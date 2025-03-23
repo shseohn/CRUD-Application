@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p><em>{{ post.created_at }}</em></p>
+    <hr>
+    <p>{{ post.content }}</p>
+    <hr>
+    <p>
+        <a href="/edit/{{ post.id }}">수정</a> |
+        <a href="/delete/{{ post.id }}" onclick="return confirm('삭제하면 되돌릴 수 없습니다. 삭제하시겠습니까?')">삭제</a> |
+        <a href="/">목록</a>
+    </p>
+</body>
+</html>
