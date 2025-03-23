@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="fade-in">
+        <div class="top-bar">
+            <div class="bar-header">
+                <h1><a href="/">게시판</a></h1>
+                <a href="/write" class="write-button">새로운 글 생성</a>
+            </div>
+            <form class="search-form" action="/search" method="get">
+                <input type="text" name="keyword" placeholder="검색어 입력" required>
+                <select name="option">
+                    <option value="title_content">제목 + 내용</option>
+                    <option value="title">제목</option>
+                    <option value="content">내용</option>
+                </select>
+                <button type="submit">검색</button>
+            </form>
+        </div>
+        
+        {% if request.args.get('keyword') %}
+            {% if posts %}
+                <ul>
+                    {% for post in posts %}
+                        <li>
+                            <a href="/post/{{ post.id }}"><strong>{{ post.title }}</strong></a><br>
+                            {{ post.created_at }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>"{{ request.args.get('keyword') }}"에 대한 검색 결과가 없습니다.</p>
+            {% endif %}
+        {% else %}
+            {% if posts %}
+                <ul>
+                    {% for post in posts %}
+                        <li>
+                            <a href="/post/{{ post.id }}"><strong>{{ post.title }}</strong></a><br>
+                            {{ post.created_at }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>아직 등록된 글이 없습니다.</p>
+            {% endif %}
+        {% endif %}
+
+    </div>
+</body>
+</html>
