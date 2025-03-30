@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 / 비밀번호 찾기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>아이디 / 비밀번호 찾기</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-message">
+            {% for message in messages %}
+            {{ message }}<br>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" class="post-form">
+        <div class="form-group">
+            <label for="mode">찾기 종류</label>
+            <select name="mode" id="mode" required onchange="this.form.submit()">
+                <option value="find_id" {% if request.form.get('mode') == 'find_id' %}selected{% endif %}>아이디 찾기</option>
+                <option value="find_pw" {% if request.form.get('mode') == 'find_pw' %}selected{% endif %}>비밀번호 찾기</option>
+            </select>
+        </div>
+
+        {% if request.form.get('mode') == 'find_pw' %}
+        <div class="form-group">
+            <label for="username">아이디</label>
+            <input type="text" name="username" placeholder="아이디 입력" value="{{ request.form.get('username', '') }}" required>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" name="email" placeholder="이메일 입력" value="{{ request.form.get('email', '') }}" required>
+        </div>
+
+        <button type="submit" class="submit-btn">찾기</button>
+    </form>
+
+    <p><a href="/login">← 로그인으로 돌아가기</a></p>
+</body>
+</html>

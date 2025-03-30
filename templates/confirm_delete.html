@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>회원 탈퇴 확인</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>⚠️ 정말 탈퇴하시겠습니까?</h2>
+    <p>회원 탈퇴를 하려면 비밀번호를 입력하세요.<br>탈퇴 시 계정 정보는 복구할 수 없습니다.</p>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-message">
+            {% for message in messages %}
+            {{ message }}<br>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="password">비밀번호</label><br>
+        <input type="password" name="password" id="password" required><br><br>
+        <button type="submit" class="submit-btn" style="background-color:red;">회원 탈퇴</button>
+        <a href="/profile/edit" class="submit-btn">취소</a>
+    </form>
+</body>
+</html>
