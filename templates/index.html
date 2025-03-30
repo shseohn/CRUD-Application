@@ -10,8 +10,19 @@
         <div class="top-bar">
             <div class="bar-header">
                 <h1><a href="/">게시판</a></h1>
-                <a href="/write" class="write-button">새로운 글 생성</a>
+
+                {% if session.get('username') %}
+                    <p>환영합니다, {{ session.username }}님! | <a href="/profile">내 프로필</a> | <a href="/logout">로그아웃</a></p>
+                {% else %}
+                    <p><a href="/login">로그인</a> | <a href="/signup">회원가입</a></p>
+                {% endif %}
+
+                {% if session.get('user_id') %}
+                    <a href="/write" class="write-button">새로운 글 생성</a>
+                {% endif %}
             </div>
+
+
             <form class="search-form" action="/search" method="get">
                 <input type="text" name="keyword" placeholder="검색어 입력" required>
                 <select name="option">
@@ -28,7 +39,14 @@
                 <ul>
                     {% for post in posts %}
                         <li>
-                            <a href="/post/{{ post.id }}"><strong>{{ post.title }}</strong></a><br>
+                            <a href="/post/{{ post.id }}">
+                                <strong>
+                                    {{ post.title }}
+                                    {% if post.is_private %}
+                                        <span style="color:red;">(비공개)</span>
+                                    {% endif %}
+                                </strong>
+                            </a><br>
                             {{ post.created_at }}
                         </li>
                     {% endfor %}
@@ -41,7 +59,14 @@
                 <ul>
                     {% for post in posts %}
                         <li>
-                            <a href="/post/{{ post.id }}"><strong>{{ post.title }}</strong></a><br>
+                            <a href="/post/{{ post.id }}">
+                                <strong>
+                                    {{ post.title }}
+                                    {% if post.is_private %}
+                                        <span style="color:red;">(비공개)</span>
+                                    {% endif %}
+                                </strong>
+                            </a><br>
                             {{ post.created_at }}
                         </li>
                     {% endfor %}
@@ -50,7 +75,6 @@
                 <p>아직 등록된 글이 없습니다.</p>
             {% endif %}
         {% endif %}
-
     </div>
 </body>
 </html>

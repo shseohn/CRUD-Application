@@ -7,14 +7,32 @@
 </head>
 <body>
     <h1>{{ post.title }}</h1>
-    <p><em>{{ post.created_at }}</em></p>
+    <div style="text-align: right; font-size: 0.85em; color: gray;">
+        <span>작성자: <a href="/profile/{{ post.user_id }}">{{ post.username }}</a> | {{ post.created_at }}</span>
+    </div>
     <hr>
-    <p>{{ post.content }}</p>
+    <div style="white-space: pre-line;">{{ post.content }}</div>
+
+    {% if post.filename %}
+        <hr>
+        <p>📎 첨부파일: 
+            <a href="{{ url_for('uploaded_file', filename=post.filename) }}" download>
+                {{ post.filename.split('_', 1)[1] if '_' in post.filename else post.filename }}
+            </a>
+        </p>
+    {% endif %}
+
     <hr>
-    <p>
-        <a href="/edit/{{ post.id }}">수정</a> |
-        <a href="/delete/{{ post.id }}" onclick="return confirm('삭제하면 되돌릴 수 없습니다. 삭제하시겠습니까?')">삭제</a> |
-        <a href="/">목록</a>
-    </p>
+
+    {% if session.get('user_id') == post.user_id %}
+        <p>
+            <a href="/edit/{{ post.id }}">수정</a> |
+            <a href="/delete/{{ post.id }}" onclick="return confirm('삭제하면 되돌릴 수 없습니다. 삭제하시겠습니까?')">삭제</a> |
+            <a href="/">목록</a>
+        </p>
+    {% else %}
+        <p><a href="/">목록</a></p>
+    {% endif %}
+  
 </body>
 </html>
