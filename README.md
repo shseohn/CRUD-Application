@@ -137,6 +137,7 @@ my_flask_project/
 ├── .env.example
 ├── static/
 │   ├── images/
+│   │   └── profile.png 
 │   └── style.css
 ├── templates/
 │   ├── index.html
