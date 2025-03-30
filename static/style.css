@@ -7,16 +7,14 @@ body {
     line-height: 1.6;
 }
 
-/* 제목 */
 h1 {
     font-size: 2.5rem;
     font-weight: 600;
     margin: 0;
-    line-height: 44px; /* 버튼 높이와 맞춤 */
+    line-height: 44px;
     color: #000;
 }
 
-/* 링크 */
 a {
     color: #000;
     text-decoration: none;
@@ -27,7 +25,6 @@ a:hover {
     opacity: 0.6;
 }
 
-/* 글 목록 */
 ul {
     list-style: none;
     padding: 0;
@@ -47,12 +44,10 @@ li:hover {
     transform: translateY(-2px);
 }
 
-/* 상단바 영역 */
 .top-bar {
     margin-bottom: 30px;
 }
 
-/* 게시판 제목 + 글쓰기 버튼 정렬 */
 .bar-header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +55,6 @@ li:hover {
     margin-bottom: 30px;
 }
 
-/* 글쓰기 버튼 */
 .write-button {
     padding: 0 20px;
     height: 44px;
@@ -78,7 +72,6 @@ li:hover {
     background-color: #333;
 }
 
-/* 검색 폼 */
 .search-form {
     display: flex;
     align-items: center;
@@ -86,7 +79,6 @@ li:hover {
     width: 100%;
 }
 
-/* 공통 높이/정렬 맞추기 */
 .search-form input[type="text"],
 .search-form select,
 .search-form button,
@@ -101,14 +93,12 @@ li:hover {
     justify-content: center;
 }
 
-/* 검색창 */
 .search-form input[type="text"] {
     flex: 1;
     padding: 0 14px;
     border: 1px solid #ccc;
 }
 
-/* 드롭다운 */
 .search-form select {
     padding: 0 14px;
     min-width: 140px;
@@ -116,7 +106,6 @@ li:hover {
     white-space: nowrap;
 }
 
-/* 검색 버튼 */
 .search-form button {
     padding: 0 20px;
     background-color: #000;
@@ -136,7 +125,7 @@ li:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 24px;
 }
 
 .form-group {
@@ -146,11 +135,21 @@ li:hover {
 }
 
 .form-group label {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 1.05rem;
 }
 
+.flash-message {
+    background-color: #ff4949;
+    color: #ffffff; 
+    padding: 12px 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px; 
+}
+
 .post-form input[type="text"],
+.post-form input[type="email"],
 .post-form textarea {
     padding: 12px 16px;
     border: 1px solid #ccc;
@@ -160,7 +159,6 @@ li:hover {
     box-sizing: border-box;
 }
 
-/* 저장/수정 버튼 */
 .submit-btn {
     align-self: flex-start;
     padding: 10px 20px;
@@ -178,7 +176,6 @@ li:hover {
     transform: scale(1.03);
 }
 
-/* fade-in 효과 */
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.8s ease-in-out forwards;
