@@ -130,7 +130,7 @@ Server will start at [http://localhost:5000](http://localhost:5000) 🚀
 ## 📁 Project Structure
 
 ```
-my_flask_project/
+CRUD-Application/
 ├── app.py
 ├── requirements.txt
 ├── .env
